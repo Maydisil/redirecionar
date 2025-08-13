@@ -14,7 +14,7 @@
 
       // 1️⃣ Faz o registro da compra no seu WebApp (sem esperar resposta)
       if (idMensagem) {
-        const webAppUrl = "https://script.google.com/macros/s/SEU_DEPLOYMENT/exec";
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbwkc7674s3_YfXsiv1vQzzOx0QzVjWptbJi10wA4N1_mN5Xu1Rsu5-vP4m5py443iXI/exec";
         const urlRegistro = `${webAppUrl}?funcao=registrarCompra&id=${encodeURIComponent(idMensagem)}`;
         fetch(urlRegistro).catch(() => {}); // ignora erros e não espera retorno
       }
