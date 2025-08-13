@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecionando...</title>
+  <script>
+    (function() {
+      // Pega parâmetros da URL
+      const params = new URLSearchParams(window.location.search);
+      const idMensagem = params.get("id");
+      const tipo = params.get("type");
+      const numero = params.get("numero");
+      const nome = params.get("nome");
+
+      // 1️⃣ Faz o registro da compra no seu WebApp (sem esperar resposta)
+      if (idMensagem) {
+        const webAppUrl = "https://script.google.com/macros/s/SEU_DEPLOYMENT/exec";
+        const urlRegistro = `${webAppUrl}?funcao=registrarCompra&id=${encodeURIComponent(idMensagem)}`;
+        fetch(urlRegistro).catch(() => {}); // ignora erros e não espera retorno
+      }
+
+      // 2️⃣ Decide para onde redirecionar
+      let destino = "https://t.me/seucanal"; // fallback padrão
+      if (tipo === "whatsapp" && numero) {
+        destino = `https://wa.me/${numero}`;
+      } else if (tipo === "telegram" && nome) {
+        destino = `https://t.me/${nome.replace(/^@/, "")}`;
+      }
+
+      // 3️⃣ Redireciona imediatamente
+      window.location.href = destino;
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecionando...</p>
+</body>
+</html>
