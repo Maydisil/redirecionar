@@ -5,31 +5,30 @@
   <title>Redirecionando...</title>
   <script>
     (function() {
+      // Pega parâmetros da URL
       const params = new URLSearchParams(window.location.search);
       const idMensagem = params.get("id");
       const tipo = params.get("type");
       const numero = params.get("numero");
       const nome = params.get("nome");
 
+      // 1️⃣ Faz o registro da compra no seu WebApp (sem esperar resposta)
       if (idMensagem) {
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbwkc7674s3_YfXsiv1vQzzOx0QzVjWptbJi10wA4N1_mN5Xu1Rsu5-vP4m5py443iXI/exec";
+        const webAppUrl = "https://script.google.com/macros/s/SEU_DEPLOYMENT/exec";
         const urlRegistro = `${webAppUrl}?funcao=registrarCompra&id=${encodeURIComponent(idMensagem)}`;
-
-        // Dispara o GET usando truque do new Image (não bloqueia o fluxo)
-        new Image().src = urlRegistro;
+        fetch(urlRegistro).catch(() => {}); // ignora erros e não espera retorno
       }
 
-      let destino = "https://t.me/dividir_contas_premium";
+      // 2️⃣ Decide para onde redirecionar
+      let destino = "https://t.me/seucanal"; // fallback padrão
       if (tipo === "whatsapp" && numero) {
         destino = `https://wa.me/${numero}`;
       } else if (tipo === "telegram" && nome) {
         destino = `https://t.me/${nome.replace(/^@/, "")}`;
       }
 
-      // Redireciona após pequeno atraso
-      setTimeout(() => {
-        window.location.href = destino;
-      }, 250);
+      // 3️⃣ Redireciona imediatamente
+      window.location.href = destino;
     })();
   </script>
 </head>
