@@ -3,36 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecionando...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      margin: 0;
+      color: #222;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #f5f5f5;
+      color: #333;
+      border: 1px solid #ddd;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .menu a:hover {
+      background: #e9e9e9;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: auto;
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
   <script>
     (function() {
-      // Pega parâmetros da URL
       const params = new URLSearchParams(window.location.search);
       const idMensagem = params.get("id");
       const tipo = params.get("type");
       const numero = params.get("numero");
       const nome = params.get("nome");
 
-      // 1️⃣ Faz o registro da compra no seu WebApp (sem esperar resposta)
       if (idMensagem) {
         const webAppUrl = "https://script.google.com/macros/s/AKfycbwkc7674s3_YfXsiv1vQzzOx0QzVjWptbJi10wA4N1_mN5Xu1Rsu5-vP4m5py443iXI/exec";
         const urlRegistro = `${webAppUrl}?funcao=registrarCompra&id=${encodeURIComponent(idMensagem)}`;
         fetch(urlRegistro, { mode: 'no-cors' }).catch(() => {});
       }
 
-      // 2️⃣ Decide para onde redirecionar
-      let destino = "https://t.me/dividir_contas_premium"; // fallback padrão
+      let destino = "https://t.me/dividir_contas_premium";
       if (tipo === "whatsapp" && numero) {
         destino = `https://wa.me/${numero}`;
       } else if (tipo === "telegram" && nome) {
         destino = `https://t.me/${nome.replace(/^@/, "")}`;
       }
 
-      // 3️⃣ Redireciona imediatamente
-      setTimeout(() => { window.location.href = destino; }, 150);
+      setTimeout(() => {
+        window.location.href = destino;
+      }, 100);
     })();
   </script>
 </head>
 <body>
-  <p>Redirecionando...</p>
+  <header>
+    <h1>Você está sendo redirecionado...</h1>
+    <p>Enquanto isso, veja algumas opções úteis:</p>
+  </header>
+
+  <nav class="menu">
+    <a href="https://t.me/dividir_contas_premium">⬅️ VOLTAR AO GRUPO</a>
+    <a href="https://maydisil.github.io/dividir-contas-premium/?abrir=formulario">📢 FAZER ANÚNCIO</a>
+    <a href="https://t.me/dividir_contas_premium/9304">✅ MOSTRAR REGRAS</a>
+    <a href="https://t.me/+EFx8SakIL5dkZTlh">🛠️ SUPORTE TÉCNICO</a>
+    <a href="https://telegra.ph/GUIA-DE-PERGUNTAS-COMUNS-12-01">❓ GUIA DE AJUDA</a>
+    <a href="https://telegra.ph/LISTA-DE-GOLPISTAS-10-06">🚷 LISTA DE GOLPISTAS</a>
+  </nav>
+
+  <footer>
+    &copy; 2025 Dividir Contas Premium
+  </footer>
 </body>
 </html>
