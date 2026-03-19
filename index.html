@@ -79,8 +79,9 @@
       const nome = params.get("nome");
 
       if (idMensagem) {
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbwkc7674s3_YfXsiv1vQzzOx0QzVjWptbJi10wA4N1_mN5Xu1Rsu5-vP4m5py443iXI/exec";
-        const urlRegistro = `${webAppUrl}?funcao=registrarCompra&id=${encodeURIComponent(idMensagem)}`;
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbzzuRJPa7G-m3BwjGKPqLhQbe5AB7nVGNymImiGL-RdQVUkLZ9dJZBwimgJHzeL39X1Yg/exec";
+        const urlRegistro =
+`${webAppUrl}?funcao=registrarCompraPublico&id=${encodeURIComponent(idMensagem)}`;
         fetch(urlRegistro, { mode: 'no-cors' }).catch(() => {});
       }
 
@@ -104,11 +105,11 @@
   </header>
 
   <nav class="menu">
-    <a href="https://t.me/dividir_contas_premium/23511">⬅️ VOLTAR AO GRUPO</a>
+    <a href="https://t.me/dividir_contas_premium/23511">📝 FAZER CADASTRO</a>
     <a href="https://t.me/DCP2000Bot?startapp=anunciar">📢 FAZER ANÚNCIO</a>
     <a href="https://t.me/dividir_contas_premium/9304">✅ MOSTRAR REGRAS</a>
     <a href="https://t.me/+EFx8SakIL5dkZTlh">🛠️ SUPORTE TÉCNICO</a>
-    <a href="https://telegra.ph/GUIA-DE-PERGUNTAS-COMUNS-12-01">❓ GUIA DE AJUDA</a>
+    <a href="https://maydisil.github.io/perguntas-frequentes/">❓ GUIA DE AJUDA</a>
     <a href="https://telegra.ph/LISTA-DE-GOLPISTAS-10-06">🚷 EVITE GOLPES</a>
   </nav>
 
