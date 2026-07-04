@@ -72,27 +72,24 @@
   </style>
   <script>
     (function() {
-      const params = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams(window.location.search);      
       const idMensagem = params.get("id");
-      const tipo = params.get("type");
-      const numero = params.get("numero");
-      const nome = params.get("nome");
-
-      if (idMensagem) {
+      const n = params.get("n");
+        if (idMensagem) {
         const webAppUrl = "https://script.google.com/macros/s/AKfycbzzuRJPa7G-m3BwjGKPqLhQbe5AB7nVGNymImiGL-RdQVUkLZ9dJZBwimgJHzeL39X1Yg/exec";
-        const urlRegistro =
-`${webAppUrl}?funcao=registrarCompraPublico&id=${encodeURIComponent(idMensagem)}`;
+        const urlRegistro = `${webAppUrl}?funcao=registrarCompraPublico&id=${encodeURIComponent(idMensagem)}`;
         fetch(urlRegistro, { mode: 'no-cors' }).catch(() => {});
       }
-
-      let destino = "https://t.me/dividir_contas_premium";
-      if (tipo === "whatsapp" && numero) {
-        destino = `https://wa.me/${numero}`;
-      } else if (tipo === "telegram" && nome) {
-        destino = `https://t.me/${nome.replace(/^@/, "")}`;
+      let destino = "https://t.me/divizobr";
+      if (n) {
+        if (n.startsWith("55")) {
+          destino = `https://wa.me/${n}`;
+        } else {
+          const usuarioTelegram = n.replace(/^@/, "");
+          destino = `https://t.me/${usuarioTelegram}`;
+        }
       }
-
-      setTimeout(() => {
+        setTimeout(() => {
         window.location.href = destino;
       }, 100);
     })();
@@ -105,9 +102,9 @@
   </header>
 
   <nav class="menu">
-    <a href="https://t.me/dividir_contas_premium/23511">📝 FAZER CADASTRO</a>
-    <a href="https://t.me/DCP2000Bot?startapp=anunciar">📢 FAZER ANÚNCIO</a>
-    <a href="https://t.me/dividir_contas_premium/9304">✅ MOSTRAR REGRAS</a>
+    <a href="https://t.me/divizobr/23511">📝 FAZER CADASTRO</a>
+    <a href="https://t.me/DCP2000Bot/anunciar">📢 FAZER ANÚNCIO</a>
+    <a href="https://t.me/divizobr/9304">✅ MOSTRAR REGRAS</a>
     <a href="https://t.me/+EFx8SakIL5dkZTlh">🛠️ SUPORTE TÉCNICO</a>
     <a href="https://maydisil.github.io/perguntas-frequentes/">❓ GUIA DE AJUDA</a>
     <a href="https://telegra.ph/LISTA-DE-GOLPISTAS-10-06">🚷 EVITE GOLPES</a>
